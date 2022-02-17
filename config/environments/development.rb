@@ -73,7 +73,7 @@ Rails.application.configure do
   config.active_record.shard_selector = { lock: true }
   config.active_record.shard_resolver = -> (request) {
     shard = request.host&.include?('uk') ? 'uk' : 'nl'
-    Rails.logger.info "Detected hard: #{shard} for #{request.host}"
+    Rails.logger.info "Detected shard: #{shard} for #{request.host}"
     shard
   }
   end
