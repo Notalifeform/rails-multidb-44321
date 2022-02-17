@@ -67,4 +67,15 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # NOTE: multi_db.rb does not seem to picked up
+  Rails.application.configure do
+  config.active_record.shard_selector = { lock: true }
+  config.active_record.shard_resolver = -> (request) {
+    shard = request.host&.include?('uk') ? 'uk' : 'nl'
+    Rails.logger.info "Detected hard: #{shard} for #{request.host}"
+    shard
+  }
+  end
+
 end
