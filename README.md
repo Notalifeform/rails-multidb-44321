@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails 7 multidb issue: once you use `ActiveStorage::BaseController` as a base controller shard switching does not seem to work anymore
 
-Things you may want to cover:
+## expected
 
-* Ruby version
+`uk.localhost` should always select the `uk` shard
 
-* System dependencies
+## observed
 
-* Configuration
+The behaviour works for `ActionController::Base` but not for `ActiveStorage::BaseController`
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- ![ActionController::Base](/doc/base.jpg)
+- ![ActiveStorage::BaseController](/doc/storage.jpg)
